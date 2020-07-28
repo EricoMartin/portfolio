@@ -2,12 +2,5 @@
 # portfolio
 My Portfolio page
 
-Watch my YouTube video to see how to run it.
-Video how to use it:
-https://youtu.be/ddLuZXs8Uyw
-Video how to deploy it:
-https://youtu.be/E1dqffpUlMA
-## Credits
-
-Template was created by Tenzin Phuljung and edited by Eric Martin.
+This is my portolio page it illustrates my level proficiency in software development. It provides links to my github account as well as my email for prospective clients to reach me through.
 
