@@ -1,4 +1,437 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eric Ibu — Portfolio</title>
+  <meta name="description" content="Professional portfolio showcasing projects, skills and contact information." />
+
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind config: extend with a gentle blue
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2a8ef7', // slightly darker-than-sky-blue
+            'primary-600': '#1977d2'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Small custom tweaks for visuals */
+    :root{
+      --primary: #2a8ef7;
+      --muted: #6b7280;
+      --card: rgba(255,255,255,0.6);
+      --glass: rgba(255,255,255,0.65);
+    }
+
+    /* smooth background gradient */
+    body{
+      background: linear-gradient(180deg, #f8fbff 0%, #f3f9ff 60%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* subtle glass card shadow */
+    .glass{
+      background: var(--glass);
+      backdrop-filter: blur(6px) saturate(120%);
+      box-shadow: 0 6px 24px rgba(16,24,40,0.06);
+    }
+
+    /* project image aspect */
+    .project-media{
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+
+    /* focus ring for accessibility */
+    a:focus, button:focus, input:focus, textarea:focus{
+      outline: 3px solid rgba(42,142,247,0.18);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="text-slate-800">
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 bg-white/70 glass border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="rounded-full bg-white shadow-sm p-1"><path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z" fill="var(--primary)"/></svg>
+        <div>
+          <h1 class="text-lg font-semibold">Eric Ibu</h1>
+          <p class="text-xs text-slate-500 -mt-0.5">Android • React Native • Flutter • Web</p>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#about" class="hover:text-primary-600">About</a>
+        <a href="#projects" class="hover:text-primary-600">Projects</a>
+        <a href="#skills" class="hover:text-primary-600">Skills</a>
+        <a href="#contact" class="hover:text-primary-600">Contact</a>
+      </nav>
+
+      <div class="md:hidden">
+        <button id="navToggle" aria-label="Open menu" class="p-2 rounded-md hover:bg-slate-100">
+          <svg id="burger" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+      </div>
+
+      <a href="#contact" class="hidden md:inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-md shadow-sm hover:bg-primary-600 transition">Hire me</a>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-100">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="#about" class="py-2">About</a>
+        <a href="#projects" class="py-2">Projects</a>
+        <a href="#skills" class="py-2">Skills</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="home" class="max-w-6xl mx-auto px-6 py-14">
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <p class="text-primary font-medium">Hello, I’m</p>
+        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight tracking-tight">Eric Ibu — Android, Mobile & Web Developer</h2>
+        <p class="mt-4 text-slate-600 max-w-xl">I build elegant, accessible mobile experiences with clean code and thoughtful design. Currently open to remote Android and React Native roles.</p>
+
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-md shadow-sm hover:shadow-md">See my work</a>
+          <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md shadow-sm hover:bg-primary-600">Get in touch</a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-3 gap-3 text-center text-sm text-slate-600">
+          <div>
+            <div class="text-2xl font-bold">8+</div>
+            <div class="mt-1">Years exp</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">40+</div>
+            <div class="mt-1">Projects</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold">Remote</div>
+            <div class="mt-1">Preferred</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Illustration -->
+      <div class="flex justify-center md:justify-end">
+        <div class="w-full max-w-md glass p-6 rounded-2xl">
+          <!-- simple modern device mockup as SVG -->
+          <svg viewBox="0 0 600 400" class="w-full h-auto">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0%" stop-color="#dff3ff" />
+                <stop offset="100%" stop-color="#ffffff" />
+              </linearGradient>
+            </defs>
+            <rect rx="18" x="10" y="10" width="580" height="380" fill="#fff" stroke="#e6f2ff" />
+            <rect x="40" y="40" width="520" height="320" rx="12" fill="url(#g1)" />
+            <!-- simplified app screens -->
+            <g transform="translate(70,70)">
+              <rect width="180" height="240" rx="10" fill="#fff" stroke="#eaf6ff" />
+              <rect x="200" width="180" height="110" rx="10" fill="#fff" stroke="#eaf6ff" />
+              <rect x="200" y="130" width="180" height="150" rx="10" fill="#fff" stroke="#eaf6ff" />
+              <circle cx="90" cy="30" r="18" fill="var(--primary)" />
+              <rect x="40" y="60" width="100" height="12" rx="6" fill="#0f172a" opacity="0.06" />
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="mt-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <h3 class="text-2xl font-semibold">About Me</h3>
+        <p class="mt-3 text-slate-600">I’m an experienced mobile developer specializing in Android (Kotlin) and cross-platform mobile apps using React Native. I care deeply about performance, maintainable architecture, and delightful user interfaces.</p>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="glass p-6 rounded-lg">
+          <h4 class="font-semibold">What I do</h4>
+          <p class="mt-2 text-sm text-slate-600">Design and build scalable mobile apps, integrate with backend APIs, and ship features that people love.</p>
+        </div>
+        <div class="glass p-6 rounded-lg">
+          <h4 class="font-semibold">How I work</h4>
+          <p class="mt-2 text-sm text-slate-600">I follow a pragmatic approach: feature-first, test-driven where it matters, with an emphasis on CI, modular architecture and code reviews.</p>
+        </div>
+        <div class="glass p-6 rounded-lg">
+          <h4 class="font-semibold">Tools</h4>
+          <p class="mt-2 text-sm text-slate-600">Kotlin, Android Jetpack, React Native, TypeScript, Node.js, Git, Firebase, REST/GraphQL.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="mt-16">
+      <div class="flex items-center justify-between">
+        <h3 class="text-2xl font-semibold">Selected Projects</h3>
+        <p class="text-sm text-slate-500">A mix of native Android and cross-platform apps.</p>
+      </div>
+
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card 1 -->
+        <article class="glass p-4 rounded-lg">
+          <img src="assets/images/project4.png" alt="Circe" class="project-media rounded-md" />
+          <h4 class="mt-3 font-semibold">Circe Solar App</h4>
+          <p class="mt-1 text-sm text-slate-600">Circe Solar App is an app that allows you calculate how much power is required to run your home appliances with Solar Energy!</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-xs text-slate-500">HTML • CSS • Javascript</div>
+            <button class="text-sm px-3 py-1 bg-primary text-white rounded-md" onclick="openProject(event,'circe')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project Card 2 -->
+        <article class="glass p-4 rounded-lg">
+          <img src="assets/images/bank1.jpg" alt="Circe" class="project-media rounded-md" />          
+          <h4 class="mt-3 font-semibold">HealthSync</h4>
+          <p class="mt-1 text-sm text-slate-600">Cross-platform React Native dashboard for fetching Health Data from sahha.ai which gets data using Health Connect from a user’s device.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-xs text-slate-500">React Native • Sahha API • Android • iOS</div>
+            <button class="text-sm px-3 py-1 bg-primary text-white rounded-md" onclick="openProject(event,'beta')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article class="glass p-4 rounded-lg">
+          <img src="assets/images/bank2.jpg" alt="BankTrack" class="project-media rounded-md" />
+          <h4 class="mt-3 font-semibold">BankTrack NFC App</h4>
+          <p class="mt-1 text-sm text-slate-600">BankTrack is a native Android app that provides a secure and convenient way for users to store and share their bank account details using NFC technology. Users can write their bank details onto an NFC tag and retrieve them when needed for making payments.</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-xs text-slate-500">Kotlin • RoomDB • Retrofit • Dagger-Hilt • NFC</div>
+            <button class="text-sm px-3 py-1 bg-primary text-white rounded-md" onclick="openProject(event,'gamma')">Details</button>
+          </div>
+        </article>
+
+        <!-- Project Card 4 -->
+        <article class="glass p-4 rounded-lg">
+          <img src="assets/images/art2.png" alt="BankTrack" class="project-media rounded-md" />
+          <h4 class="mt-3 font-semibold">MyTimbuShop App</h4>
+          <p class="mt-1 text-sm text-slate-600">MyTimbuShop App is a native Android app that offers a seamless e-commerce shopping experience. Select items to add to your shopping cart, favourite items are kept handy for easy access, Checkout payment system. etc</p>
+          <div class="mt-3 flex items-center justify-between">
+            <div class="text-xs text-slate-500">Kotlin • RoomDB • Retrofit • Dagger-Hilt • Navigation graph</div>
+            <button class="text-sm px-3 py-1 bg-primary text-white rounded-md" onclick="openProject(event,'gamma')">Details</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="mt-16">
+      <h3 class="text-2xl font-semibold">Skills & Tools</h3>
+      <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass p-4 rounded-lg">
+          <h4 class="font-medium">Mobile</h4>
+          <p class="text-sm text-slate-600 mt-2">Kotlin, Android SDK, Jetpack Compose, Views, Widgets</p>
+        </div>
+        <div class="glass p-4 rounded-lg">
+          <h4 class="font-medium">Cross-platform</h4>
+          <p class="text-sm text-slate-600 mt-2">React Native, Expo, TypeScript</p>
+        </div>
+        <div class="glass p-4 rounded-lg">
+          <h4 class="font-medium">Backend</h4>
+          <p class="text-sm text-slate-600 mt-2">Node.js, Express, Firebase, REST & GraphQL</p>
+        </div>
+        <div class="glass p-4 rounded-lg">
+          <h4 class="font-medium">Dev Tools</h4>
+          <p class="text-sm text-slate-600 mt-2">Git, CI/CD, Testing, Play Console, App Store Connect</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="mt-16">
+      <div class="bg-white rounded-xl p-6 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <h3 class="text-2xl font-semibold">Let’s work together</h3>
+            <p class="mt-2 text-slate-600">Available for remote roles and contract work. Send a message and I’ll reply within 48 hours.</p>
+
+            <dl class="mt-6 text-sm text-slate-600">
+              <div class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 5h18M3 12h18M3 19h18" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg><span>Based in Nigeria (Remote)</span></div>
+              <div class="flex items-center gap-3 mt-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 8v6a2 2 0 0 1-2 2H7l-4 3V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" stroke="#0f172a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg><span>Available for remote</span></div>
+            </dl>
+
+            <div class="mt-6 flex gap-3">
+              <a href="mailto:ibu.erico@gmail.com" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-md">Email me</a>
+              <a href="https://drive.google.com/uc?export=download&id=1D8RbJnxuHDhGrc8mNbK3awUz81bJP1aV" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-md" target="_blank" rel="noopener">Download CV</a>
+              <!-- <a href="#" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-md">Download CV</a> -->
+            </div>
+          </div>
+
+          <form id="contactForm" class="space-y-3" onsubmit="handleContact(event)">
+            <div>
+              <label class="text-sm">Name</label>
+              <input required name="name" class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="Your name" />
+            </div>
+            <div>
+              <label class="text-sm">Email</label>
+              <input required type="email" name="email" class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="you@company.com" />
+            </div>
+            <div>
+              <label class="text-sm">Message</label>
+              <textarea required name="message" rows="4" class="w-full mt-1 px-3 py-2 border rounded-md" placeholder="How can I help?"></textarea>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="submit" class="px-4 py-2 bg-primary text-white rounded-md">Send message</button>
+              <div id="contactFeedback" class="text-sm text-slate-500"></div>
+            </div>
+          </form>
+          <div id="sm_links">
+        <div class="mt-6 flex gap-3">
+          <a
+            href="https://www.linkedin.com/in/eric-ibu-78b927182/"
+            id="sm_linkedin"
+          >
+            <img
+              src="/assets/images/linkedin.png"
+              alt="linkedin"
+              width="20px"
+              height="20px"
+          /></a>
+          <a href="https://twitter.com/kingmartini1" id="sm_twitter">
+            <img
+              src="/assets/images/twitter.png"
+              alt="twitter"
+              width="20px"
+              height="20px"
+          /></a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-16 py-8 text-sm text-slate-500 text-center">
+      <div>&copy; <span id="year"></span> Eric Ibu — Built with care • <a href="#" class="hover:text-primary-600">Privacy</a></div>
+    </footer>
+  </main>
+
+  <!-- PROJECT MODAL -->
+  <div id="projectModal" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black/40" onclick="closeModal()"></div>
+    <div class="relative max-w-3xl w-full p-6 bg-white rounded-xl shadow-lg">
+      <button class="absolute right-4 top-4 text-slate-500" onclick="closeModal()">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // mobile nav
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    navToggle?.addEventListener('click', ()=>{
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // project details content
+    const projects = {
+      circe: {
+        title: 'Circe Solar App',
+        desc: 'Circe Solar App is an app that allows you calculate how much power is required to run your home appliances with Solar Energy!',
+        tech: 'HTML • CSS • Javascript',
+        img: null,
+        repo: 'https://github.com/EricoMartin/circe-solar-calculator'
+      },
+      beta: {
+        title: 'HealthSync',
+        desc: 'Cross-platform app built with React Native for fetching Health Data from sahha.ai which gets data using Health Connect from a user’s device.</p>.',
+        tech: 'React Native • Sahha API • Android • iOS',
+        img: null,
+        repo: 'https://github.com/EricoMartin/HealthSync'          
+      },
+      gamma: {
+        title: 'BankTrack NFC App',
+        desc: 'BankTrack is a native Android app that provides a secure and convenient way for users to store and share their bank account details using NFC technology. Users can write their bank details onto an NFC tag and retrieve them when needed for making payments.',
+        tech: 'Kotlin • Jetpack • Room • WorkManager',
+        img: null,
+        repo: 'https://github.com/EricoMartin/BankTrack'
+      },
+      gamma: {
+        title: 'MyTimbuShop App',
+        desc: 'MyTimbuShop App is a native Android app that offers a seamless e-commerce shopping experience. Select items to add to your shopping cart, favourite items are kept handy for easy access, Checkout payment system, etc.',
+        tech: 'Kotlin • Jetpack • Room • Retrofit • Dagger-Hilt • WorkManager',
+        img: null,
+        repo: 'https://github.com/EricoMartin/MyTimbuShop'
+      }
+    };
+
+    function openProject(e, id){
+      const p = projects[id];
+      const modal = document.getElementById('projectModal');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = `
+        <h3 class=\"text-xl font-semibold\">${p.title}</h3>
+        <p class=\"mt-3 text-slate-600\">${p.desc}</p>
+        <div class=\"mt-4 text-sm text-slate-500\">${p.tech}</div>
+        <div class=\"mt-4\"><a href=\"${p.repo}\" class=\"px-3 py-2 bg-primary text-white rounded-md inline-block\" target=\"_blank\" rel=\"noopener\">View repo</a></div>
+      `;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeModal(){
+      const modal = document.getElementById('projectModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // contact form (no backend) — fallback: opens mailto
+    function handleContact(e){
+      e.preventDefault();
+      const f = e.target;
+      const name = f.name.value.trim();
+      const email = f.email.value.trim();
+      const message = f.message.value.trim();
+      const feedback = document.getElementById('contactFeedback');
+      // Build a mailto link as graceful fallback
+      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}%0AEmail: ${email}%0A%0A${message}`);
+      feedback.textContent = 'Opening email client...';
+      setTimeout(()=>{
+        window.location.href = `mailto:youremail@example.com?subject=${subject}&body=${body}`;
+        feedback.textContent = 'If nothing opened, send an email to youremail@example.com';
+      }, 400);
+    }
+
+    // small progressive enhancements: smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href');
+        if(href.startsWith('#')){
+          const el = document.querySelector(href);
+          if(el){
+            e.preventDefault();
+            el.scrollIntoView({behavior:'smooth', block:'start'});
+            mobileMenu?.classList.add('hidden');
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 
 <head>
@@ -30,7 +463,7 @@
 
 	<!-- Watch how to deploy it live -->
 	<!-- https://youtu.be/E1dqffpUlMA -->
-	<div class="wrapper">
+	<!-- <div class="wrapper">
 		
 
 		<section id="about">
@@ -121,7 +554,7 @@
 
 
 			<div class="row work-row"> <!-- odd -->
-				<div class="small-12 medium-6 medium-push-6 columns">
+				<!-- <div class="small-12 medium-6 medium-push-6 columns">
 					<img src="assets/images/project4.png" alt="">
 				</div>
 				<div class="small-12 medium-5 medium-pull-7 columns">
@@ -136,7 +569,7 @@
 			</div>
 
 			<div class="row work-row"> <!-- even -->
-				<div class="small-12 medium-6 columns">
+				<!-- <div class="small-12 medium-6 columns">
 					<img src="assets/images/project5.png" alt="">
 				</div>
 				<div class="small-12 medium-5 medium-offset-1 columns">
@@ -148,9 +581,9 @@
 						<a class="my-button" target="_blank" href="https://codepen.io/King_Martini/full/NojEbe">Visit Website</a>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
-			<div class="row work-row"> <!-- odd -->
+			<!-- <div class="row work-row"> 
 				<div class="small-12 medium-6 medium-push-6 columns">
 					<img src="assets/images/project6.png" alt="">
 				</div>
@@ -163,10 +596,10 @@
 						<a class="my-button" target="_blank" href="https://codepen.io/King_Martini/full/GzWxqX">Visit Website</a>
 					</div>
 				</div>
-			</div>
+			</div> -->
 
 
-		</section>
+		<!-- </section>
 
 		
 
@@ -193,12 +626,12 @@
 					<p id="copyright">Copyright &copy; 2020 | Eric Martin</p>
 				</div>
 			</div>
-		</footer>
+		</footer> -->
 
 
 
-	</div>
+	<!-- </div>
 	<script src="assets/scripts/app.js" charset="utf-8"></script>
-</body>
+</body> --> -->
 
-</html>
+<!-- </html> --> --> -->
